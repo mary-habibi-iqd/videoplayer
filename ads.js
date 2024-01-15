@@ -55,7 +55,46 @@ function initializeIMA() {
   });
 
   var adsRequest = new google.ima.AdsRequest();
-  adsRequest.adTagUrl = `https://pubads.g.doubleclick.net/gampad/ads?iu=/183/ariva/videoplayer&description_url=http%3A%2F%2Fgoogle.com&tfcd=0&npa=0&sz=16x9&gdfp_req=1&kw=test_mary_ulf&output=vast&env=vp&unviewed_position_start=1&impl=s&correlator=`;
+  adsRequest.adTagUrl =
+    "https://pubads.g.doubleclick.net/gampad/ads?" +
+    "iu=/183/ariva/videoplayer" +
+    "&sz=16x9v" +
+ 
+    "&description_url=http%3A%2F%2Fgoogle.com" +
+    "&tfcd=0" +
+    "&npa=0" +
+    "&kw=test_mary_ulf" +
+
+    "&gdfp_req=1" +
+    "&output=vast" +
+    "&env=vp" +
+    "&unviewed_position_start=1" +
+    "&impl=s" +
+    "&correlator=";
+    console.log(adsRequest.adTagUrl)
+  adsRequest.adTagUrl =
+    "https://pubads.g.doubleclick.net/gampad/ads?" +
+    "iu=/21775744923/external/single_ad_samples" +
+    "&sz=640x480" +
+   
+    "&cust_params=sample_ct%3Dlinear" +
+    "&ciu_szs=300x250%2C728x90" +
+
+    "&gdfp_req=1" +
+    "&output=vast" +
+    "&env=vp" +
+    "&unviewed_position_start=1" +
+    "&impl=s" +
+    "&correlator=";
+    
+    console.log(adsRequest.adTagUrl)
+    
+    adsRequest.adTagUrl = 'https://pubads.g.doubleclick.net/gampad/ads?' +
+    'iu=/21775744923/external/single_ad_samples&sz=640x480&' +
+    'cust_params=sample_ct%3Dlinear&ciu_szs=300x250%2C728x90&' +
+    'gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=';
+
+    console.log(adsRequest.adTagUrl)
 
   // Specify the linear and nonlinear slot sizes. This helps the SDK to
   // select the correct creative if multiple are returned.
