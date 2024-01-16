@@ -55,7 +55,7 @@ function initializeIMA() {
   });
 
   var adsRequest = new google.ima.AdsRequest();
-  adsRequest.adTagUrl =
+  const urlMaryUlfTest =
     "https://pubads.g.doubleclick.net/gampad/ads?" +
     "iu=/183/ariva/videoplayer" +
     "&sz=16x9v" +
@@ -71,8 +71,8 @@ function initializeIMA() {
     "&unviewed_position_start=1" +
     "&impl=s" +
     "&correlator=";
-    console.log(adsRequest.adTagUrl)
-  adsRequest.adTagUrl =
+    console.log(urlMaryUlfTest)
+    const urlGoogleFormatted =
     "https://pubads.g.doubleclick.net/gampad/ads?" +
     "iu=/21775744923/external/single_ad_samples" +
     "&sz=640x480" +
@@ -87,13 +87,14 @@ function initializeIMA() {
     "&impl=s" +
     "&correlator=";
     
-    console.log(adsRequest.adTagUrl)
+    console.log(urlGoogleFormatted)
     
-    adsRequest.adTagUrl = 'https://pubads.g.doubleclick.net/gampad/ads?' +
+    const urlGoogleUnformatted = 'https://pubads.g.doubleclick.net/gampad/ads?' +
     'iu=/21775744923/external/single_ad_samples&sz=640x480&' +
     'cust_params=sample_ct%3Dlinear&ciu_szs=300x250%2C728x90&' +
     'gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=';
-
+    
+    adsRequest.adTagUrl = urlMaryUlfTest;
     console.log(adsRequest.adTagUrl)
 
   // Specify the linear and nonlinear slot sizes. This helps the SDK to
