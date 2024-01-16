@@ -55,47 +55,51 @@ function initializeIMA() {
   });
 
   var adsRequest = new google.ima.AdsRequest();
+  const baseURL = "https://pubads.g.doubleclick.net/gampad/ads?";
+  const commonQueries =
+    "&gdfp_req=1" +
+    "&output=vast" +
+    "&env=instream" +
+    "&unviewed_position_start=1" +
+    "&impl=s" +
+    "&correlator=";
+    
+  const commonGeneratedQueries =     "&description_url=http%3A%2F%2Fgoogle.com&tfcd=0&npa=0";
   const urlMaryUlfTest =
-    "https://pubads.g.doubleclick.net/gampad/ads?" +
+    baseURL +
     "iu=/183/ariva/videoplayer" +
     "&sz=16x9v" +
- 
-    "&description_url=http%3A%2F%2Fgoogle.com" +
-    "&tfcd=0" +
-    "&npa=0" +
+    commonGeneratedQueries
     "&kw=test_mary_ulf" +
+    commonQueries;
+  console.log(urlMaryUlfTest);
 
-    "&gdfp_req=1" +
-    "&output=vast" +
-    "&env=vp" +
-    "&unviewed_position_start=1" +
-    "&impl=s" +
-    "&correlator=";
-    console.log(urlMaryUlfTest)
-    const urlGoogleFormatted =
-    "https://pubads.g.doubleclick.net/gampad/ads?" +
+  const urlNew =
+    baseURL +
+    "iu=/183/ariva" +
+    "&sz=16x9" +
+    commonGeneratedQueries
+    "&kw=test_mary_ulf" +
+    commonQueries;
+
+  const urlGoogleFormatted =
+    baseURL +
     "iu=/21775744923/external/single_ad_samples" +
     "&sz=640x480" +
-   
     "&cust_params=sample_ct%3Dlinear" +
     "&ciu_szs=300x250%2C728x90" +
+    commonQueries;
 
-    "&gdfp_req=1" +
-    "&output=vast" +
-    "&env=vp" +
-    "&unviewed_position_start=1" +
-    "&impl=s" +
-    "&correlator=";
-    
-    console.log(urlGoogleFormatted)
-    
-    const urlGoogleUnformatted = 'https://pubads.g.doubleclick.net/gampad/ads?' +
-    'iu=/21775744923/external/single_ad_samples&sz=640x480&' +
-    'cust_params=sample_ct%3Dlinear&ciu_szs=300x250%2C728x90&' +
-    'gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=';
-    
-    adsRequest.adTagUrl = urlMaryUlfTest;
-    console.log(adsRequest.adTagUrl)
+  console.log(urlGoogleFormatted);
+
+  const urlGoogleUnformatted =
+    "https://pubads.g.doubleclick.net/gampad/ads?" +
+    "iu=/21775744923/external/single_ad_samples&sz=640x480&" +
+    "cust_params=sample_ct%3Dlinear&ciu_szs=300x250%2C728x90&" +
+    "gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=";
+
+  adsRequest.adTagUrl = urlNew;
+  console.log(adsRequest.adTagUrl);
 
   // Specify the linear and nonlinear slot sizes. This helps the SDK to
   // select the correct creative if multiple are returned.
