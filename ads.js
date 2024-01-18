@@ -80,20 +80,17 @@ function initializeIMA() {
 
   const urlPlamena =
     baseURL +
-    "iu=/183/iqdspiegel/videoplayer" +
-    "&sz=16x9%7C480x360%7C640x360%7C640x480"+
-    "&cust_params=pos%3Dpre%26kw%3Diqadtile169%2C" +
-    "live" +
-    "%26player%3Dstandard" +
-    "&impl=s" +
-    "&gdfp_req=1" +
-    "&env=vp" +
-    "&output=vast" +
-    "&unviewed_position_start=1" +
-    "&vpos=preroll" +
-    "&url=https%3A%2F%2Fwww.spiegel.de" +
-    "&description_url=https%3A%2F%2Fwww.spiegel.de" +
-    "&correlator=";
+    "iu=/183/iqdspiegel/videoplayer" + // different line unit
+    "&sz=16x9%7C480x360%7C640x360%7C640x480"+ // more sizes
+    "&cust_params=pos%3Dpre%26kw%3Diqadtile169%2C" + // we did not have these
+    "live" + // we did not have these
+    "%26player%3Dstandard" + // we did not have these
+    "&vpos=preroll" + // also did not have this
+    "&url=https%3A%2F%2Fwww.google.de" + // different but does not matter
+    "&description_url=https%3A%2F%2Fwww.google.de" + // different but does not matter
+    
+    commonQueries
+
 
   const urlGoogleFormatted =
     baseURL +
