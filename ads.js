@@ -76,28 +76,37 @@ function initializeIMA() {
 
   const urlNew =
     baseURL + "iu=/183/ariva" + "&sz=16x9" + commonGeneratedQueries;
-  "&kw=test_mary_ulf" + commonQueries;
+    "&kw=test_mary_ulf" + commonQueries;
 
   const urlPlamena =
     baseURL +
     "iu=/183/iqdspiegel/videoplayer" + // different line unit
     "&sz=16x9%7C480x360%7C640x360%7C640x480"+ // more sizes
-    "&cust_params=pos%3Dpre%26kw%3Diqadtile169%2C" + // we did not have these
-    "live" + // we did not have these
-    "%26player%3Dstandard" + // we did not have these
-    "&vpos=preroll" + // also did not have this
-    "&url=https%3A%2F%2Fwww.google.de" + // different but does not matter
-    "&description_url=https%3A%2F%2Fwww.google.de" + // different but does not matter
-    
+    "&cust_params=pos%3Dpre%26kw%3Diqadtile169" + 
+    "%2Clive" + // we did not have these
+
     commonQueries
-
-
+  console.log({urlPlamena})
+  const newNewURL = "https://pubads.g.doubleclick.net/gampad/ads?"+
+  "iu=/183/ariva/videoplayer"+
+  "&description_url=http%3A%2F%2Fwww.google.de"+
+  "&tfcd=0"+
+  "&npa=0"+
+  "&sz=16x9%7C480x360%7C640x360%7C640x480"+
+  "&kw=test_mary_ulf"+
+  "&gdfp_req=1"+
+  "&output=vast"+
+  "&env=vp"+
+  "&unviewed_position_start=1"+
+  "&impl=s"+
+  "&correlator=";
   const urlGoogleFormatted =
     baseURL +
     "iu=/21775744923/external/single_ad_samples" +
     "&sz=640x480" +
     "&cust_params=sample_ct%3Dlinear" +
     "&ciu_szs=300x250%2C728x90" +
+ 
     commonQueries;
 
   console.log(urlGoogleFormatted);
@@ -108,7 +117,7 @@ function initializeIMA() {
     "cust_params=sample_ct%3Dlinear&ciu_szs=300x250%2C728x90&" +
     "gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=";
 
-  adsRequest.adTagUrl = urlPlamena;
+  adsRequest.adTagUrl = newNewURL;
   console.log(adsRequest.adTagUrl);
 
   // Specify the linear and nonlinear slot sizes. This helps the SDK to
