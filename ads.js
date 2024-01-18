@@ -63,24 +63,37 @@ function initializeIMA() {
     "&unviewed_position_start=1" +
     "&impl=s" +
     "&correlator=";
-    
-  const commonGeneratedQueries =     "&description_url=http%3A%2F%2Fgoogle.com&tfcd=0&npa=0";
+
+  const commonGeneratedQueries =
+    "&description_url=http%3A%2F%2Fgoogle.com&tfcd=0&npa=0";
   const urlMaryUlfTest =
     baseURL +
     "iu=/183/ariva/videoplayer" +
     "&sz=16x9v" +
-    commonGeneratedQueries
-    "&kw=test_mary_ulf" +
-    commonQueries;
+    commonGeneratedQueries;
+  "&kw=test_mary_ulf" + commonQueries;
   console.log(urlMaryUlfTest);
 
   const urlNew =
+    baseURL + "iu=/183/ariva" + "&sz=16x9" + commonGeneratedQueries;
+  "&kw=test_mary_ulf" + commonQueries;
+
+  const urlPlamena =
     baseURL +
-    "iu=/183/ariva" +
-    "&sz=16x9" +
-    commonGeneratedQueries
-    "&kw=test_mary_ulf" +
-    commonQueries;
+    "iu=/183/iqdspiegel/videoplayer" +
+    "&sz=16x9%7C480x360%7C640x360%7C640x480"+
+    "&cust_params=pos%3Dpre%26kw%3Diqadtile169%2C" +
+    "live" +
+    "%26player%3Dstandard" +
+    "&impl=s" +
+    "&gdfp_req=1" +
+    "&env=vp" +
+    "&output=vast" +
+    "&unviewed_position_start=1" +
+    "&vpos=preroll" +
+    "&url=https%3A%2F%2Fwww.spiegel.de" +
+    "&description_url=https%3A%2F%2Fwww.spiegel.de" +
+    "&correlator=";
 
   const urlGoogleFormatted =
     baseURL +
@@ -98,7 +111,7 @@ function initializeIMA() {
     "cust_params=sample_ct%3Dlinear&ciu_szs=300x250%2C728x90&" +
     "gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=";
 
-  adsRequest.adTagUrl = urlNew;
+  adsRequest.adTagUrl = urlPlamena;
   console.log(adsRequest.adTagUrl);
 
   // Specify the linear and nonlinear slot sizes. This helps the SDK to
