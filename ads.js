@@ -1,6 +1,6 @@
 /**
  * @description The video element holding the content
- * @type {HTMLElement}
+ * @type {HTMLVideoElement}
  */
 let videoElement;
 
@@ -17,24 +17,43 @@ let adsLoaded = false;
  */
 let adContainer;
 
+/**
+ * @description This class represents a container for displaying ads. The SDK will automatically create structures inside the containerElement parameter to house video and overlay ads.
+ * @type {object}
+ */
 let adDisplayContainer;
+
+/**
+ * @description AdsLoader allows clients to request ads from ad servers. To do so, users must register for the AdsManagerLoadedEvent event and then request ads.
+ * @type {object}
+ */
 let adsLoader;
+
+/**
+ * @description Provides the outer public API to the publisher and communicates with the inner instance of ads manager.
+ * @type {object}
+ */
 let adsManager;
 
-window.addEventListener("load", function (event) {
+window.addEventListener("load", ()=> {
   videoElement = document.getElementById("video-element");
   videoElement.addEventListener("play", function (event) {
     loadAds(event);
   });
+
+  /**
+   * The playbutton sitting under the video element.
+   * @type {HTMLButtonElement}
+   */
   const playButton = document.getElementById("play-button");
-  playButton.addEventListener("click", function (event) {
+  playButton.addEventListener("click", () => {
     videoElement.play();
   });
 
   initializeIMA();
 });
 
-window.addEventListener("resize", function (event) {
+window.addEventListener("resize", () => {
   console.log("window resized");
   if (adsManager) {
     const width = videoElement.clientWidth;
@@ -86,6 +105,11 @@ function initializeIMA() {
     adsLoader.contentComplete();
   });
 
+  /**
+   * @description A class for specifying properties of the ad request.
+   * @type {object}
+   * @constant
+   */
   const adsRequest = new google.ima.AdsRequest();
   adsRequest.adTagUrl =
     "https://pubads.g.doubleclick.net/gampad/ads?" +
