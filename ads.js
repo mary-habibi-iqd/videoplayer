@@ -1,14 +1,28 @@
+/**
+ * @description The video element holding the content
+ * @type {HTMLElement}
+ */
 let videoElement;
-// Define a variable to track whether there are ads loaded and initially set it to false
+
+/**
+ * @description tracks whether there are ads loaded - initially set to false
+ * @default
+ * @type {boolean}
+ */
 let adsLoaded = false;
+
+/**
+ * @description The container for the ads that sits over the video element with content.
+ * @type {HTMLElement}
+ */
 let adContainer;
+
 let adDisplayContainer;
 let adsLoader;
 let adsManager;
 
 window.addEventListener("load", function (event) {
   videoElement = document.getElementById("video-element");
-  initializeIMA();
   videoElement.addEventListener("play", function (event) {
     loadAds(event);
   });
@@ -16,6 +30,8 @@ window.addEventListener("load", function (event) {
   playButton.addEventListener("click", function (event) {
     videoElement.play();
   });
+
+  initializeIMA();
 });
 
 window.addEventListener("resize", function (event) {
@@ -27,15 +43,31 @@ window.addEventListener("resize", function (event) {
   }
 });
 
+/**
+ * Initializes the the IMA API.
+ *
+ * - Adds click event for the ad-container
+ * - Instantiates the IMA AdDisplayContainer class
+ * - Instantiates the IMA AdsLoader class
+ *   - Adds Eventlistener for "onloaded" and "error" to adsloader
+ * - Instantiates the IMA Adsrequest and
+ *   requests an ad with the given url
+ * - Loads the Ad with the adsloader object
+ *
+ * @returns {void}
+ */
 function initializeIMA() {
   console.log("initializing IMA");
+
   adContainer = document.getElementById("ad-container");
+
   adContainer.addEventListener("click", adContainerClick);
 
   adDisplayContainer = new google.ima.AdDisplayContainer(
     adContainer,
     videoElement
   );
+
   adsLoader = new google.ima.AdsLoader(adDisplayContainer);
 
   adsLoader.addEventListener(
@@ -69,7 +101,7 @@ function initializeIMA() {
     "&unviewed_position_start=1" +
     "&impl=s" +
     "&correlator=";
- 
+
   // Specify the linear and nonlinear slot sizes. This helps the SDK to
   // select the correct creative if multiple are returned.
   adsRequest.linearAdSlotWidth = videoElement.clientWidth;
@@ -81,6 +113,15 @@ function initializeIMA() {
   adsLoader.requestAds(adsRequest);
 }
 
+/**
+ * Callback to Clicks
+ *
+ * Toggles play and pause on the videoElement
+ *
+ * @param {InputEvent} event
+ *
+ * @returns {void}
+ */
 function adContainerClick(event) {
   console.log("ad container clicked");
   if (videoElement.paused) {
