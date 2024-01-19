@@ -1,10 +1,10 @@
-var videoElement;
+let videoElement;
 // Define a variable to track whether there are ads loaded and initially set it to false
-var adsLoaded = false;
-var adContainer;
-var adDisplayContainer;
-var adsLoader;
-var adsManager;
+let adsLoaded = false;
+let adContainer;
+let adDisplayContainer;
+let adsLoader;
+let adsManager;
 
 window.addEventListener("load", function (event) {
   videoElement = document.getElementById("video-element");
@@ -12,7 +12,7 @@ window.addEventListener("load", function (event) {
   videoElement.addEventListener("play", function (event) {
     loadAds(event);
   });
-  var playButton = document.getElementById("play-button");
+  const playButton = document.getElementById("play-button");
   playButton.addEventListener("click", function (event) {
     videoElement.play();
   });
@@ -21,8 +21,8 @@ window.addEventListener("load", function (event) {
 window.addEventListener("resize", function (event) {
   console.log("window resized");
   if (adsManager) {
-    var width = videoElement.clientWidth;
-    var height = videoElement.clientHeight;
+    const width = videoElement.clientWidth;
+    const height = videoElement.clientHeight;
     adsManager.resize(width, height, google.ima.ViewMode.NORMAL);
   }
 });
@@ -54,72 +54,22 @@ function initializeIMA() {
     adsLoader.contentComplete();
   });
 
-  var adsRequest = new google.ima.AdsRequest();
-  const baseURL = "https://pubads.g.doubleclick.net/gampad/ads?";
-  const commonQueries =
+  const adsRequest = new google.ima.AdsRequest();
+  adsRequest.adTagUrl =
+    "https://pubads.g.doubleclick.net/gampad/ads?" +
+    "iu=/183/ariva/videoplayer" +
+    "&description_url=http%3A%2F%2Fwww.google.de" +
+    "&cust_params=kw%3Dtest_mary_ulf" +
+    "&tfcd=0" +
+    "&npa=0" +
+    "&sz=16x9%7C480x360%7C640x360%7C640x480" +
     "&gdfp_req=1" +
     "&output=vast" +
-    "&env=instream" +
+    "&env=vp" +
     "&unviewed_position_start=1" +
     "&impl=s" +
     "&correlator=";
-
-  const commonGeneratedQueries =
-    "&description_url=http%3A%2F%2Fgoogle.com&tfcd=0&npa=0";
-  const urlMaryUlfTest =
-    baseURL +
-    "iu=/183/ariva/videoplayer" +
-    "&sz=16x9v" +
-    commonGeneratedQueries;
-  "&kw=test_mary_ulf" + commonQueries;
-  console.log(urlMaryUlfTest);
-
-  const urlNew =
-    baseURL + "iu=/183/ariva" + "&sz=16x9" + commonGeneratedQueries;
-    "&kw=test_mary_ulf" + commonQueries;
-
-  const urlPlamena =
-    baseURL +
-    "iu=/183/iqdspiegel/videoplayer" + // different line unit
-    "&sz=16x9%7C480x360%7C640x360%7C640x480"+ // more sizes
-    "&cust_params=pos%3Dpre%26kw%3Diqadtile169" + 
-    "%2Clive" + // we did not have these
-
-    commonQueries
-  console.log({urlPlamena})
-  const newNewURL = "https://pubads.g.doubleclick.net/gampad/ads?"+
-  "iu=/183/ariva/videoplayer"+
-  "&description_url=http%3A%2F%2Fwww.google.de"+
-  "&tfcd=0"+
-  "&npa=0"+
-  "&sz=16x9%7C480x360%7C640x360%7C640x480"+
-  "&kw=test_mary_ulf"+
-  "&gdfp_req=1"+
-  "&output=vast"+
-  "&env=vp"+
-  "&unviewed_position_start=1"+
-  "&impl=s"+
-  "&correlator=";
-  const urlGoogleFormatted =
-    baseURL +
-    "iu=/21775744923/external/single_ad_samples" +
-    "&sz=640x480" +
-    "&cust_params=sample_ct%3Dlinear" +
-    "&ciu_szs=300x250%2C728x90" +
  
-    commonQueries;
-
-  console.log(urlGoogleFormatted);
-
-  const urlGoogleUnformatted =
-    "https://pubads.g.doubleclick.net/gampad/ads?" +
-    "iu=/21775744923/external/single_ad_samples&sz=640x480&" +
-    "cust_params=sample_ct%3Dlinear&ciu_szs=300x250%2C728x90&" +
-    "gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=";
-
-  adsRequest.adTagUrl = newNewURL;
-  console.log(adsRequest.adTagUrl);
-
   // Specify the linear and nonlinear slot sizes. This helps the SDK to
   // select the correct creative if multiple are returned.
   adsRequest.linearAdSlotWidth = videoElement.clientWidth;
@@ -194,8 +144,8 @@ function loadAds(event) {
   videoElement.load();
   adDisplayContainer.initialize();
 
-  var width = videoElement.clientWidth;
-  var height = videoElement.clientHeight;
+  const width = videoElement.clientWidth;
+  const height = videoElement.clientHeight;
   try {
     adsManager.init(width, height, google.ima.ViewMode.NORMAL);
     adsManager.start();
